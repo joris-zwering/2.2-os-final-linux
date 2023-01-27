@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  remote_user: azureuser
+  roles:
+    - wordpress
