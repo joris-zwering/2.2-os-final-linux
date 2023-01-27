@@ -1,0 +1,15 @@
+---
+- name: Install node-red via Docker
+  hosts: controlled-node
+  become: yes
+  tasks:
+  - name: Install Docker
+    package:
+      name: docker-ce
+      state: present
+
+  - name: Pull node-red Docker image
+    command: docker pull nodered/node-red:latest
+
+  - name: Run node-red Docker container
+    command: docker run -it -p 1880:1880 -v node_red_data:/data -d --name mynodered nodered/node-red:latest

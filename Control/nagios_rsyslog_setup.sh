@@ -18,3 +18,4 @@ sudo make install-config
 sudo make install-webconf
 sudo a2enmod rewrite cgi
 sudo systemctl restart apache2
+sudo mv /home/azureuser/2.2-os-final-linux/hosts /etc/ansible/hosts

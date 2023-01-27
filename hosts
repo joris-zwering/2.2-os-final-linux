@@ -1,0 +1,6 @@
+[manager-node]
+Control ansible_host=10.0.0.x
+
+[controlled-node]
+Docker ansible_host=10.0.0.x
+Wordpress ansible_host=10.0.0.x
