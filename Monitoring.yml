@@ -1,0 +1,41 @@
+---
+- hosts: control
+  become: yes
+  remote_user: azureuser
+  tasks:
+  - name: Package Installation
+    apt:
+      name: "{{ item }}"
+      update_cache: yes
+    loop:
+      - rsyslog
+      - nagios-nrpe-server
+      - monitoring-plugins
+  - name: Configuration rsyslog.conf
+    copy:
+      src: rsyslog.conf
+      dest: /etc/rsyslog.conf
+  - name: Configuration nrpe.cfg
+    template:
+      src: nrpe.cfg.j2
+      dest: /etc/nagios/nrpe.cfg
+    vars:
+      server_address: "{{ ansible_ssh_host }}"
+  - name: Configuration nrpe_local.cfg
+    template:
+      src: nrpe_local.cfg.j2
+      dest: /etc/nagios/nrpe_local.cfg
+    vars:
+      server_address: "{{ ansible_ssh_host }}"
+  - name: Restart rsyslog
+    ansible.builtin.service:
+      name: rsyslog
+      state: restarted
+  - name: Restart Nagios
+    ansible.builtin.service:
+      name: nagios-nrpe-server
+      state: restarted
+  - name: Enable Nagios
+    ansible.builtin.service:
+      name: nagios-nrpe-server
+      enabled: yes
