@@ -6,7 +6,7 @@
   
 - name : Connecting to server  
   hosts: wordpress-node
-  remote_user: tribetraining
+  remote_user: azureuser
   become: yes
 
 
