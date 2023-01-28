@@ -1,6 +1,8 @@
 [manager-node]
 Control ansible_host=10.0.0.x
 
-[controlled-node]
+[docker-node]
 Docker ansible_host=10.0.0.x
+
+[wordpress-node]
 Wordpress ansible_host=10.0.0.x

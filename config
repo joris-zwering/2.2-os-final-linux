@@ -1,0 +1,9 @@
+Host docker 10.0.0.x
+HostName 10.0.0.x
+IdentityFile ~/.ssh/docker_rsa
+User azureuser
+
+Host wordpress 10.0.0.x
+HostName 10.0.0.x
+IdentityFile ~/.ssh/wordpress_rsa
+User azureuser

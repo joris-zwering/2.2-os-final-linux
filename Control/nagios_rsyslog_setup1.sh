@@ -19,3 +19,7 @@ sudo make install-webconf
 sudo a2enmod rewrite cgi
 sudo systemctl restart apache2
 sudo mv /home/azureuser/2.2-os-final-linux/hosts /etc/ansible/hosts
+sudo mv /home/azureuser/2.2-os-final-linux/config ~/.ssh/config
+sudo rm /etc/rsyslog.conf
+sudo mv /home/azureuser/2.2-os-final-linux/Control/rsyslog.conf /etc/rsyslog.conf
+sudo systemctl restart rsyslog

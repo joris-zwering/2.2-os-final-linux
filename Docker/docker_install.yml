@@ -1,6 +1,6 @@
 ---
 - name: Install node-red via Docker
-  hosts: controlled-node
+  hosts: docker-node
   become: yes
   tasks:
   - name: Install Docker
