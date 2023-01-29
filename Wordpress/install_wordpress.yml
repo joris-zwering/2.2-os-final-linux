@@ -5,7 +5,7 @@
   # become - because we dont want to use root user, we must use sudo privilleges and for this we must set value "yes"
   
 - name : Connecting to server  
-  hosts: wordpress-node
+  hosts: wordpressnode
   remote_user: azureuser
   become: yes
 

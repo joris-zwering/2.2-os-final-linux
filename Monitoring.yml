@@ -1,5 +1,7 @@
 ---
 - hosts: dockernode:wordpressnode
+  vars:
+    - masternode: 10.0.0.x
   become: yes
   remote_user: azureuser
   tasks:
@@ -12,11 +14,9 @@
       - nagios-nrpe-server
       - monitoring-plugins
   - name: Configuration rsyslog.conf
-    copy:
-      src: rsyslog.conf
+    template:
+      src: rsyslog.conf.j2
       dest: /etc/rsyslog.conf
-    vars:
-      server_address: "{{ ansible_ssh_host }}"
   - name: Configuration nrpe.cfg
     template:
       src: nrpe.cfg.j2

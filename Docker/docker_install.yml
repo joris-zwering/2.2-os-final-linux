@@ -1,15 +1,35 @@
 ---
-- name: Install node-red via Docker
-  hosts: docker-node
+- name: Install Docker on Ubuntu
+  hosts: ubuntu
   become: yes
   tasks:
+  - name: Update package cache
+    apt:
+      update_cache: yes
+  - name: Install Docker dependencies
+    apt:
+      name:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+      state: present
+  - name: Add Docker GPG key
+    shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  - name: Add Docker repository
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
   - name: Install Docker
-    package:
+    apt:
       name: docker-ce
       state: present
-
+  - name: Start and enable Docker service
+    service:
+      name: docker
+      state: started
+      enabled: yes
   - name: Pull node-red Docker image
     command: docker pull nodered/node-red:latest
-
   - name: Run node-red Docker container
     command: docker run -it -p 1880:1880 -v node_red_data:/data -d --name mynodered nodered/node-red:latest
