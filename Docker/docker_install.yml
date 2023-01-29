@@ -1,6 +1,6 @@
 ---
-- name: Install Docker on Ubuntu
-  hosts: ubuntu
+- name: Install Docker 
+  hosts: dockernode
   become: yes
   tasks:
   - name: Update package cache

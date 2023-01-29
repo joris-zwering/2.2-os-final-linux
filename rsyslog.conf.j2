@@ -58,10 +58,10 @@ $WorkDirectory /var/spool/rsyslog
 $IncludeConfig /etc/rsyslog.d/*.conf
 
 #Send system logs to rsyslog server over RDP
-*.* @{{ server_address }}:514
+*.* @{{ master_address }}:514
 
 #Send system logs to rsyslog server over TCP
-*.* @@{{ server_address }}:514
+*.* @@{{ master_address }}:514
 
 $ActionQueueFileName queue
 $ActionQueueMaxDiskSpace 1g
